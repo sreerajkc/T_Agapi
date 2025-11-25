@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     private int currentLevel;
 
     [Header("Card Properties")]
-    [SerializeField] private CardData[] cardDatas;
     private Card[] generatedCards;
     private int totalPairToMatch;
     private Card firstFlippedCard = null;
