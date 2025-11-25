@@ -160,4 +160,10 @@ public class GameManager : MonoBehaviour
         Data.SetCurrentLevel(currentLevel + 1);
         OnWin?.Invoke();
     }
+
+    [ContextMenu("Reset Level")]
+    private void ResetData()
+    {
+        Data.Reset();
+    }
 }

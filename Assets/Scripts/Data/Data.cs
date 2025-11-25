@@ -11,4 +11,9 @@ public class Data
     {
        return PlayerPrefs.GetInt("game_level", 1);
     }
+
+    public static void Reset()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

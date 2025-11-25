@@ -461,7 +461,7 @@ MonoBehaviour:
   comboText: {fileID: 695338225}
   winPanel: {fileID: 1916588102}
   winPanelScoreText: {fileID: 1427656204}
-  nextLevelButton: {fileID: 0}
+  nextLevelButton: {fileID: 1531000553}
 --- !u!4 &126594724
 Transform:
   m_ObjectHideFlags: 0
