@@ -185,8 +185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardDatas: []
   cardBoard: {fileID: 1139898930}
-  rows: 5
-  columns: 5
+  rows: 4
+  columns: 4
 --- !u!4 &401209311
 Transform:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &458536386
 GameObject:
@@ -439,11 +439,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 401209310}
   uiManager: {fileID: 0}
-  cardData: []
+  cardsData:
+  - {fileID: 11400000, guid: 97002e7a2db802a4cb4cb7e871c6dfb3, type: 2}
+  - {fileID: 11400000, guid: 54faac8ad4e3bca448d45d2f439bfe31, type: 2}
+  - {fileID: 11400000, guid: fa8fae6c2acf70943911c78f64abab2a, type: 2}
+  - {fileID: 11400000, guid: 34ea6e39d06387b4dbf45556974e17db, type: 2}
+  - {fileID: 11400000, guid: 097f4aca890aa514abbca016bc3da474, type: 2}
+  - {fileID: 11400000, guid: 31d6bf6fb0ab7af48bd0f5fb111c1dc5, type: 2}
+  - {fileID: 11400000, guid: 56f1aa35f8424d448bede4b35a796466, type: 2}
+  - {fileID: 11400000, guid: 6ed620c6e5a26af48b2fa627d0cce4c4, type: 2}
+  - {fileID: 11400000, guid: e719464003c90144db191ad102177ac3, type: 2}
+  - {fileID: 11400000, guid: 4cd9ef423dceefc4b8dac59350ffa8b6, type: 2}
+  - {fileID: 11400000, guid: 948c4729898fd8446acd53dc9329bd64, type: 2}
+  - {fileID: 11400000, guid: 60e205c6288b1ba43b4e04cd7a6cb130, type: 2}
+  - {fileID: 11400000, guid: aff7d9e40e15eac43be78203c71a6f57, type: 2}
+  - {fileID: 11400000, guid: 3011d643d9407244ebad5aa5835cf74f, type: 2}
+  - {fileID: 11400000, guid: b83bb93963483e6458c298c5aef43219, type: 2}
+  - {fileID: 11400000, guid: 6b6eeaa188073e64894504057f8a2279, type: 2}
+  - {fileID: 11400000, guid: 7ff7046af7cefb144aef7f3497461621, type: 2}
+  - {fileID: 11400000, guid: e86ce60e7c9d82a4e8931952ad09f591, type: 2}
+  - {fileID: 11400000, guid: 893f4e5b3c3c69c45b3bb1f2247e097e, type: 2}
+  - {fileID: 11400000, guid: 61a9db72fe2933d4b89fdd58f13aa803, type: 2}
   cardPrefab: {fileID: 3203208643677670241, guid: a9ebf948e050f4340b8e4dad33dee780, type: 3}
   rectTransform: {fileID: 1139898927}
   horizontalSpacing: 50
   verticalSpacing: 50
+  maxRowsAtDefaultSize: 3
+  maxColumnsAtDefaultSize: 5
 --- !u!1 &1766793930
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +560,7 @@ RectTransform:
   m_Children:
   - {fileID: 1139898927}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -611,5 +633,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
