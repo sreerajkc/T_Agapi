@@ -461,7 +461,7 @@ MonoBehaviour:
   comboText: {fileID: 695338225}
   winPanel: {fileID: 1916588102}
   winPanelScoreText: {fileID: 1427656204}
-  winPanelNextLevelButton: {fileID: 1531000553}
+  nextLevelButton: {fileID: 0}
 --- !u!4 &126594724
 Transform:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184ca8441b94c974f8bbd7f03e661215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leveDatas:
+  leveDatasList:
   - {fileID: 11400000, guid: 0d72b0e0e66c78a47b9daf883e86083a, type: 2}
   - {fileID: 11400000, guid: 51125a949b289cf438dc274991a7c5b8, type: 2}
   - {fileID: 11400000, guid: 58d3cb287135a8e42ace772b0fc6ff2b, type: 2}
@@ -1077,9 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3f0609e9b55c0448c19eef4f17ddc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 401209310}
-  uiManager: {fileID: 0}
-  cardsData:
+  cardDataList:
   - {fileID: 11400000, guid: 97002e7a2db802a4cb4cb7e871c6dfb3, type: 2}
   - {fileID: 11400000, guid: 54faac8ad4e3bca448d45d2f439bfe31, type: 2}
   - {fileID: 11400000, guid: fa8fae6c2acf70943911c78f64abab2a, type: 2}

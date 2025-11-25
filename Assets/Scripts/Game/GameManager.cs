@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Properties
     [Header("Level Properties")]
-    [SerializeField] private LevelData[] leveDatas;
+    [SerializeField] private LevelData[] leveDatasList;
     private int currentLevel;
 
     [Header("Card Properties")]
     private Card[] generatedCards;
-    private int totalPairToMatch;
+    private int remainingPairs;
     private Card firstFlippedCard = null;
     private Card secondFlippedCard = null;
 
@@ -22,10 +23,12 @@ public class GameManager : MonoBehaviour
     private int score;
     private int combo;
 
+    //Fields
     public int Score => score;
     public int Combo => combo;
     public int CurrentLevel => currentLevel;
 
+    //Events
     public static event Action<Card, Card> OnPairMatched;
     public static event Action<Card, Card> OnPairUnmatched;
     public static event Action OnLevelInitialized;
@@ -49,13 +52,13 @@ public class GameManager : MonoBehaviour
     private void InitializeLevel()
     {
         currentLevel = Data.GetCurrentLevel();
-        LevelData levelData = leveDatas[currentLevel];
+        LevelData levelData = leveDatasList[currentLevel - 1];
 
         generatedCards = cardBoard.GenerateCards(levelData.Rows, levelData.Columns);
 
         int totalCount = levelData.Rows * levelData.Columns;
         StartCoroutine(UnflipAllCardsRoutine(totalCount * .1f));
-        totalPairToMatch = totalCount / 2;
+        remainingPairs = totalCount / 2;
 
         OnLevelInitialized?.Invoke();
     }
@@ -72,11 +75,11 @@ public class GameManager : MonoBehaviour
 
             if (firstFlippedCard.Id == secondFlippedCard.Id)
             {
-                MatchPair(firstFlippedCard, secondFlippedCard);
+                HandleMatchedPair(firstFlippedCard, secondFlippedCard);
             }
             else
             {
-                UnmatchPairs(firstFlippedCard, secondFlippedCard);
+                HandleUnmatchedPair(firstFlippedCard, secondFlippedCard);
             }
 
             firstFlippedCard = null;
@@ -84,15 +87,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void UnmatchPairs(Card firstCard, Card SecondCard)
+    private void HandleUnmatchedPair(Card firstCard, Card SecondCard)
     {
         combo = 0;
         OnPairUnmatched?.Invoke(firstCard, SecondCard);
 
-        StartCoroutine(UnmatchPairRoutine(firstCard, SecondCard));
+        StartCoroutine(UnmatchedPairRoutine(firstCard, SecondCard));
     }
 
-    public IEnumerator UnmatchPairRoutine(Card firstCard, Card SecondCard)
+    public IEnumerator UnmatchedPairRoutine(Card firstCard, Card SecondCard)
     {
         yield return new WaitForSeconds(1);
 
@@ -100,12 +103,12 @@ public class GameManager : MonoBehaviour
         SecondCard.Unflip();
     }
 
-    public void MatchPair(Card firstCard, Card SecondCard)
+    public void HandleMatchedPair(Card firstCard, Card SecondCard)
     {
-        StartCoroutine(MatchPairRoutine(firstCard, SecondCard));
+        StartCoroutine(MatchedPairRoutine(firstCard, SecondCard));
     }
 
-    public IEnumerator MatchPairRoutine(Card firstCard, Card SecondCard)
+    public IEnumerator MatchedPairRoutine(Card firstCard, Card SecondCard)
     {
         yield return new WaitForSeconds(1);
 
@@ -133,10 +136,10 @@ public class GameManager : MonoBehaviour
     private void UpdateScores()
     {
         score += 1 + combo;
-        totalPairToMatch--;
+        remainingPairs--;
         combo++;
 
-        if (totalPairToMatch == 0)
+        if (remainingPairs == 0)
         {
             Win();
         }

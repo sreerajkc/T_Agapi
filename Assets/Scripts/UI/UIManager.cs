@@ -1,5 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,8 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
-
+    //Properties
     [Header("Dependencies")]
     [SerializeField] private GameManager gameManager; 
 
@@ -23,20 +20,22 @@ public class UIManager : MonoBehaviour
     [Space]
     [SerializeField] private GameObject winPanel;
     [SerializeField] private TextMeshProUGUI winPanelScoreText;
-    [SerializeField] private Button winPanelNextLevelButton;
+    [SerializeField] private Button nextLevelButton;
  
-    public Sprite CardFlippedSprite => cardFlippedSprite;
-    public Sprite CardUnflippedSprite => cardUnflippedSprite;
+    public static Sprite CardFlippedSprite;
+    public static Sprite CardUnflippedSprite;
 
     private void Awake()
     {
-        Instance = this;
-        winPanelNextLevelButton.onClick.AddListener(OnClickWinPanelNextButton);
+        CardFlippedSprite = cardFlippedSprite;
+        CardUnflippedSprite = cardUnflippedSprite;
+
+        nextLevelButton.onClick.AddListener(OnClickWinPanelNextButton);
     }
 
     private void OnEnable()
     {
-        GameManager.OnLevelInitialized += UpdateLeveText;
+        GameManager.OnLevelInitialized += UpdateLevelText;
         GameManager.OnPairMatched += UpdateGameUI;
         GameManager.OnPairUnmatched += UpdateGameUI;
         GameManager.OnWin += DisplayWin;
@@ -44,14 +43,14 @@ public class UIManager : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.OnLevelInitialized -= UpdateLeveText;
+        GameManager.OnLevelInitialized -= UpdateLevelText;
         GameManager.OnPairMatched -= UpdateGameUI;
         GameManager.OnPairUnmatched -= UpdateGameUI;
         GameManager.OnWin -= DisplayWin;
 
     }
 
-    private void UpdateLeveText()
+    private void UpdateLevelText()
     {
         levelText.text = "LVL : " + gameManager.CurrentLevel.ToString();
     }

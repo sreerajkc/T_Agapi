@@ -1,21 +1,18 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// Class for core card logic
-/// </summary>
+
 public class Card : MonoBehaviour
 {
+    //Fields
     public int Id { get; private set;}
     public int InstanceId { get; private set; }
     public bool IsFlipped { get; private set; }
 
+    //Events
     public static event Action<Card> OnInitialized;
-
     public static event Action<Card> OnFlipped;
     public static event Action<Card> OnUnflipped;
-    public static event Action<Card> OnMatched;
 
     public void Initialize(int id,int instanceId)
     {
@@ -35,11 +32,6 @@ public class Card : MonoBehaviour
     {
         IsFlipped= false;
         OnUnflipped?.Invoke(this);
-    }
-
-    public void Match()
-    {
-        OnMatched?.Invoke(this);
     }
 
 }

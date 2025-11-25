@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class CardBoard : MonoBehaviour
 {
-    [Header("Dependencies")]
-    [SerializeField] private GameManager gameManager;
-    [SerializeField] private UIManager uiManager;
-
+    //Properties
     [Header("Card Properties")]
-    [SerializeField] private List<CardData> cardsData;
+    [SerializeField] private List<CardData> cardDataList;
     [SerializeField] private Card cardPrefab;
     private RectTransform cardRectTransform;
 
@@ -59,7 +56,7 @@ public class CardBoard : MonoBehaviour
 
         Vector2 currentSpawnPosition = spawnStartPoint;
 
-        List<CardData> shuffledDuplicatedCardDataList = cardsData.Shuffle().RandomDuplicate(count);
+        List<CardData> shuffledPairs = cardDataList.Shuffle().RandomDuplicate(count);
 
         //Generates from top left
         for (int i = 0; i < count; i++)
@@ -73,7 +70,7 @@ public class CardBoard : MonoBehaviour
             Card card = Instantiate(cardPrefab, rectTransform);
             cards[i] = card;
 
-            CardData randomCardData = shuffledDuplicatedCardDataList[i];
+            CardData randomCardData = shuffledPairs[i];
             card.Initialize(randomCardData.Id, i + 1);
 
             CardUIManager cardUIManager = card.GetComponent<CardUIManager>();

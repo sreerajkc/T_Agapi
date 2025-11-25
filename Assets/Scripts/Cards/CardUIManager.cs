@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CardUIManager : MonoBehaviour
 {
+    //Properties
     [Header("Card Properties")]
     [SerializeField] private Card card;
 
@@ -60,7 +61,7 @@ public class CardUIManager : MonoBehaviour
         if (card.InstanceId == flippedCard.InstanceId)
         {
             button.enabled = false;
-            StartCoroutine(FlipRoutine(-1));
+            StartCoroutine(FlipAnimationRoutine(-1));
         }
     }
 
@@ -68,7 +69,7 @@ public class CardUIManager : MonoBehaviour
     {
         if (card.InstanceId == unflippedCard.InstanceId)
         {
-            StartCoroutine(FlipRoutine(1));
+            StartCoroutine(FlipAnimationRoutine(1));
         }
         else
         {
@@ -77,7 +78,7 @@ public class CardUIManager : MonoBehaviour
 
     }
 
-    private IEnumerator FlipRoutine(int direction)
+    private IEnumerator FlipAnimationRoutine(int direction)
     {
         float elapsed = 0;
         float duration = .5f;
@@ -93,13 +94,13 @@ public class CardUIManager : MonoBehaviour
                 if (direction == 1)
                 {
                     direction = -1;
-                    cardImage.sprite = UIManager.Instance.CardUnflippedSprite;
+                    cardImage.sprite = UIManager.CardUnflippedSprite;
                     icon.enabled = false;
                 }
                 else
                 {
                     direction = 1;
-                    cardImage.sprite = UIManager.Instance.CardFlippedSprite;
+                    cardImage.sprite = UIManager.CardFlippedSprite;
                     icon.enabled = true;
                 }
 
