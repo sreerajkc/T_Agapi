@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Cards SO/Card Data")]
+[CreateAssetMenu(menuName = "SO/Card Data")]
 public class CardData : ScriptableObject
 {
     [SerializeField] private int id;

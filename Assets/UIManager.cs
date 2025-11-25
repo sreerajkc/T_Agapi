@@ -1,39 +1,77 @@
 using System;
+using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Card UI Data")]
-    [SerializeField] private CardData[] cardDatas;
+    public static UIManager Instance;
+
+    [Header("Dependencies")]
+    [SerializeField] private GameManager gameManager; 
 
     [Header("Card UI Elements")]
-    [SerializeField] private RectTransform cardBoardRectTransform;
+    [SerializeField] private Sprite cardFlippedSprite;
+    [SerializeField] private Sprite cardUnflippedSprite;
 
-    [Header("Core UI Elements")]
-    [SerializeField] private Canvas canvas;
+    [Header("Game UI Elements")]
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI comboText;
+    [Space]
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private TextMeshProUGUI winPanelScoreText;
+    [SerializeField] private Button winPanelNextLevelButton;
+ 
+    public Sprite CardFlippedSprite => cardFlippedSprite;
+    public Sprite CardUnflippedSprite => cardUnflippedSprite;
+
+    private void Awake()
+    {
+        Instance = this;
+        winPanelNextLevelButton.onClick.AddListener(OnClickWinPanelNextButton);
+    }
 
     private void OnEnable()
     {
-        Card.OnInitialized += OnCardInitialized;
+        GameManager.OnLevelInitialized += UpdateLeveText;
+        GameManager.OnPairMatched += UpdateGameUI;
+        GameManager.OnPairUnmatched += UpdateGameUI;
+        GameManager.OnWin += DisplayWin;
     }
 
     private void OnDisable()
     {
-        Card.OnInitialized -= OnCardInitialized;
+        GameManager.OnLevelInitialized -= UpdateLeveText;
+        GameManager.OnPairMatched -= UpdateGameUI;
+        GameManager.OnPairUnmatched -= UpdateGameUI;
+        GameManager.OnWin -= DisplayWin;
+
     }
 
-    private void OnCardInitialized(Card card)
+    private void UpdateLeveText()
     {
-        for (int i = 0; i < cardDatas.Length; i++)
-        {
-            CardData cardData = cardDatas[i];
+        levelText.text = gameManager.CurrentLevel.ToString();
+    }
 
-            if (cardData.Id == card.Id)
-            {
-                CardUIManager cardUIManager = card.GetComponent<CardUIManager>();
-                cardUIManager.SetCardIcon(cardData.Icon);
-                cardUIManager.GetComponent<RectTransform>().parent = cardBoardRectTransform;
-            }
-        }
+    private void UpdateGameUI(Card card1, Card card2)
+    {
+        comboText.text = "<sup>x</sup>" + gameManager.Combo.ToString();
+        scoreText.text = gameManager.Score.ToString();
+    }
+
+
+
+    private void DisplayWin()
+    {
+        winPanel.SetActive(true);
+        winPanelScoreText.text = gameManager.Score.ToString();  
+    }
+
+    private void OnClickWinPanelNextButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

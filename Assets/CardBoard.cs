@@ -26,8 +26,10 @@ public class CardBoard : MonoBehaviour
         cardRectTransform = cardPrefab.GetComponent<RectTransform>();
     }
 
-    public void GenerateCards(int rows, int columns)
+    public Card[] GenerateCards(int rows, int columns)
     {
+        Card[] cards = new Card[rows * columns];
+
         int count = rows * columns;
 
         // With default card sizeDelta, screen can perfectly fit 3 rows. Need to scale when column changes
@@ -69,11 +71,13 @@ public class CardBoard : MonoBehaviour
             }
 
             Card card = Instantiate(cardPrefab, rectTransform);
+            cards[i] = card;
+
             CardData randomCardData = shuffledDuplicatedCardDataList[i];
-            card.Initialize(randomCardData.Id);
+            card.Initialize(randomCardData.Id, i + 1);
 
             CardUIManager cardUIManager = card.GetComponent<CardUIManager>();
-            cardUIManager.SetCardIcon(randomCardData.Icon);
+            cardUIManager.SetIcon(randomCardData.Icon);
 
             RectTransform cardRectTransform = card.GetComponent<RectTransform>();
             cardRectTransform.sizeDelta = cardSizeDelta;
@@ -81,6 +85,8 @@ public class CardBoard : MonoBehaviour
 
             currentSpawnPosition.x += cardSizeDelta.x + (horizontalSpacing * sizeMultiplier);
         }
+
+        return cards;
     }
 
 }
