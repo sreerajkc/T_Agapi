@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateLeveText()
     {
-        levelText.text = gameManager.CurrentLevel.ToString();
+        levelText.text = "LVL : " + gameManager.CurrentLevel.ToString();
     }
 
     private void UpdateGameUI(Card card1, Card card2)

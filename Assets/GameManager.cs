@@ -110,8 +110,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         UpdateScores();
-
         OnPairMatched?.Invoke(firstCard, SecondCard);
+
 
 
         float elapsed = 0;

@@ -456,11 +456,11 @@ MonoBehaviour:
   gameManager: {fileID: 401209310}
   cardFlippedSprite: {fileID: 21300000, guid: bd003c6f7d11707438ad988113483dff, type: 3}
   cardUnflippedSprite: {fileID: 21300000, guid: d02b7920808c378449ccceb93b86a8a8, type: 3}
-  levelText: {fileID: 0}
+  levelText: {fileID: 1747984789}
   scoreText: {fileID: 1571066671}
   comboText: {fileID: 695338225}
-  winPanel: {fileID: 1635916375}
-  winPanelScoreText: {fileID: 33682906}
+  winPanel: {fileID: 1916588102}
+  winPanelScoreText: {fileID: 1427656204}
   winPanelNextLevelButton: {fileID: 1531000553}
 --- !u!4 &126594724
 Transform:
@@ -734,6 +734,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92d7b0635ffc594e95b48a2bf20568b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 473073107}
+  cardFlipSfx: {fileID: 8300000, guid: 9bfb8e57ea703cd4da186b2354225453, type: 3}
+  pairMatchSfx: {fileID: 8300000, guid: 73beb22cf44b6d145baa7ae7d0068781, type: 3}
+  pairUnmatchSfx: {fileID: 8300000, guid: e11c5d1cf6a71a44f891ef21d8fbfcd1, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,6 @@ public class CardUIManager : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private Button button;
 
-    private int flippedCardCount = 0;
-
     private void OnEnable()
     {
         Card.OnUnflipped += OnAnyCardUnflipped;
@@ -59,26 +57,11 @@ public class CardUIManager : MonoBehaviour
 
     private void OnAnyCardFlipped(Card flippedCard)
     {
-        flippedCardCount++;
-
         if (card.InstanceId == flippedCard.InstanceId)
         {
             button.enabled = false;
             StartCoroutine(FlipRoutine(-1));
         }
-        
-        if (flippedCardCount == 2)
-        {
-            // Check if the second flipped card is already flipped or not
-            if (!card.IsFlipped)
-            {
-                // if not which means all the other card button should be disabled
-                button.enabled = false;
-            }
-
-            flippedCardCount = 0;
-        }
-
     }
 
     private void OnAnyCardUnflipped(Card unflippedCard)
